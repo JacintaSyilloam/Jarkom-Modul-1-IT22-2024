@@ -74,7 +74,10 @@ Untuk mencari email dan password, filter dengan mencari response 302 Found.
 ```
 display filter: _ws.col.info == "HTTP/1.1 302 Found  (text/html)"
 ```
-Packet dengan length 483 berisi dengan response ```Invalide Username or Password```. Karena packet yang didisplay hanya 140, dengan scroll ditemukan packet yang sedikit berbeda dengan length 485 dan berisi response ```Login Successful```. Setelah follow stream, ditemukan credentials yang dicari.
+Packet dengan length 483 berisi dengan response ```Invalide Username or Password```. Karena packet yang didisplay hanya 140, dengan scroll ditemukan packet yang sedikit berbeda dengan length 485 dan berisi response ```Login Successful```.
+![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/e31e0167-5975-43de-943f-b98749e8917f)
+
+Setelah follow stream, ditemukan credentials yang dicari.
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/b3062a60-cdf0-45f2-b3dc-80b16859a769)
 ```
 ❯ nc 10.15.40.20 10002
