@@ -18,9 +18,9 @@
 
 <!-- TOC --><a name="atm-or-atp-or-ftp-"></a>
 ## ATM or ATP or FTP ? 🤔 
-Pradityo mencoba mengembangkan server ftp, tetapi seseorang mencoba melakukan bruteforce login, bisakah Anda menganalisis apa yang terjadi?
-
-file: ftp.pcap
+> Pradityo mencoba mengembangkan server ftp, tetapi seseorang mencoba melakukan bruteforce login, bisakah Anda menganalisis apa yang terjadi?
+> 
+> file: ftp.pcap
 
 Dari deskripsi soal, dapat clue tentang server ftp. Oleh karena itu dilakukan filter pada protocol ftp.
 ```
@@ -49,9 +49,9 @@ Congrats! Flag: JARKOM2024{Brut3f0rce_FtP_9hr8vcAfiRktkAY}
 
 <!-- TOC --><a name="evidence"></a>
 ## evidence
-Perusahaan nanomate baru saja kebobolan. Mereka menyewamu untuk mencari tahu bagaimana caranya pelaku bisa masuk.
-
-file: challenge.pcapng
+> Perusahaan nanomate baru saja kebobolan. Mereka menyewamu untuk mencari tahu bagaimana caranya pelaku bisa masuk.
+> 
+> file: challenge.pcapng
 
 Saat membuka capture, dapat langsung dilihat attempt attacker untuk melakukan bruteforce path.
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/fbb08a31-4a0a-482c-84b6-fa167186c504)
@@ -114,9 +114,9 @@ Congrats! Flag: JARKOM2024{m4innya_h3bat_9T8kXbntQRJHCAq}
 
 <!-- TOC --><a name="how-many-packets"></a>
 ## How Many packets? 
-Sebagai kewajiban untuk laporan, aku diminta untuk mencari tahu berapa kali attempt login yang dilakukan oleh hacker. Dapatkah kamu membantuku untuk menganalisanya?
-
-file: ftp.pcap
+> Sebagai kewajiban untuk laporan, aku diminta untuk mencari tahu berapa kali attempt login yang dilakukan oleh hacker. Dapatkah kamu membantuku untuk menganalisanya?
+>
+> file: ftp.pcap
 
 Setelah membuka packet, dapat dicari berapa kali attacker melakukan bruteforce dengan melakukan filter pada response 331. Di bagian bawah, terlihat total packets yang didisplay yaitu 934.
 ```
@@ -140,9 +140,9 @@ Congrats! Flag: JARKOM2024{c0unT_uR_P4cket5_xh8lYb9tyRVtC49}
 
 <!-- TOC --><a name="trace-him"></a>
 ## trace him
-Selain menghitung jumlah packet, coba lacak juga ip penyerang tersebut!
-
-file: ftp.pcap
+> Selain menghitung jumlah packet, coba lacak juga ip penyerang tersebut!
+>
+> file: ftp.pcap
 
 Saat membuka packet, langsung terlihat ip address attacker yang attempt untuk bruteforce.
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/dc87bb85-0540-48ac-b7ca-0fb89e0ff6f1)
@@ -163,9 +163,9 @@ Congrats! Flag: JARKOM2024{Wh3re'5_thE_S4uce_u6rkRbxygRFHkAq}
 
 <!-- TOC --><a name="creds"></a>
 ## creds
-Attacker menyadari jika dia bisa membuat clone ftp server dari target, temukan kredensialn dari server ftp yang dibuat oleh attacker
-
-file: evidence.pcap
+> Attacker menyadari jika dia bisa membuat clone ftp server dari target, temukan kredensialn dari server ftp yang dibuat oleh attacker
+>
+> file: evidence.pcap
 
 Dari deskripsi soal disebutkan tentang ftp server, jadi lakukan filter pada protocol ftp.
 ```
@@ -197,9 +197,9 @@ Congrats! Flag: JARKOM2024{s3curE_uR_FtP_9JfkYz9jiAVtl8q}
 
 <!-- TOC --><a name="malwleowleo"></a>
 ## malwleowleo
-Dapatkah kamu menemukan file malware yang dikirim oleh attacker melalui ftp?
-
-file: evidence.pcap
+> Dapatkah kamu menemukan file malware yang dikirim oleh attacker melalui ftp?
+>
+> file: evidence.pcap
 
 Untuk menemukan file pada capture, digunakan filter protocol ftp, yakni protocol untuk file transfer, dan filter search STOR, yakni command setelah sukses melakukan file transfer. Setelah itu ditemukan file malware yang dicari.
 ```
@@ -224,9 +224,9 @@ Congrats! Flag: JARKOM2024{beC4refUl_0f_m4lwAr3_xTfkPOnygAFtR4q}
 
 <!-- TOC --><a name="whoami"></a>
 ## whoami
-Dapatkah kamu menemukan siapa identitas attacker?
-
-file: evidence.pcap
+> Dapatkah kamu menemukan siapa identitas attacker?
+>
+> file: evidence.pcap
 
 Follow TCP stream berikutnya dari soal sebelumnya saat attacker memasukkan credentials. Pada stream ke 7, ditemukan packet dengan message yang diencode dengan base64.
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/bf5bca01-8962-4e12-98fb-4e4aa4dce024)
@@ -247,9 +247,9 @@ Correct
 
 <!-- TOC --><a name="fuzz"></a>
 ## fuzz
-My website got hacked. Can you analyze this network traffic to help me track the attacker?
-
-file: capture.pcap
+> My website got hacked. Can you analyze this network traffic to help me track the attacker?
+>
+> file: capture.pcap
 
 Saat membuka capturenya, dapat langsung dilihat source ip address yang menggunakan ffuf pada korban serta port yang dituju.
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/d59fae29-1050-4c6d-959e-1d6e6c8cd2b6)
@@ -304,9 +304,9 @@ Congrats! Flag: JARKOM2024{s3m4ng4t_ya_<3_xhfkX79ji1dokrB}
 
 <!-- TOC --><a name="secret"></a>
 ## secret
-Temukan pesan rahasia dari attacker
-
-file: evidence.pcap
+> Temukan pesan rahasia dari attacker
+> 
+> file: evidence.pcap
 
 Gunakan filter ftp untuk mencari file yang diupload oleh attacker. Ditemukan file jpg.
 ```
@@ -338,9 +338,9 @@ Congrats! Flag: JARKOM2024{l0_Blm_tW_MIO_MIRZA?_xhr8vc9fy6ke889}
 
 <!-- TOC --><a name="malwaew"></a>
 ## malwaew
-Ini adalah network traffic dari salah satu komputer di DPSSI yang terkena malware. Pak Sunhi, memintamu untuk membantu menganalisisnya. Bantulah Pak Sunhi untuk menemukan malware tersebut.
-
-note: Network traffic berikut mengandung malware asli. 
+> Ini adalah network traffic dari salah satu komputer di DPSSI yang terkena malware. Pak Sunhi, memintamu untuk membantu menganalisisnya. Bantulah Pak Sunhi untuk menemukan malware tersebut.
+>
+> note: Network traffic berikut mengandung malware asli. 
 
 file: infected.zip
 
