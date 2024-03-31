@@ -4,8 +4,19 @@
 |--|--|
 | Jacinta Syilloam | 5027221036 |
 
+## Content
+   * [ATM or ATP or FTP ? 🤔 ](#atm-or-atp-or-ftp-)
+   * [evidence](#evidence)
+   * [How Many packets? ](#how-many-packets)
+   * [trace him](#trace-him)
+   * [creds](#creds)
+   * [malwleowleo](#malwleowleo)
+   * [whoami](#whoami)
+   * [fuzz](#fuzz)
+   * [secret](#secret)
+   * [malwaew](#malwaew)
 
-
+<!-- TOC --><a name="atm-or-atp-or-ftp-"></a>
 ## ATM or ATP or FTP ? 🤔 
 Pradityo mencoba mengembangkan server ftp, tetapi seseorang mencoba melakukan bruteforce login, bisakah Anda menganalisis apa yang terjadi?
 
@@ -36,6 +47,7 @@ Congrats! Flag: JARKOM2024{Brut3f0rce_FtP_9hr8vcAfiRktkAY}
 
 
 
+<!-- TOC --><a name="evidence"></a>
 ## evidence
 Perusahaan nanomate baru saja kebobolan. Mereka menyewamu untuk mencari tahu bagaimana caranya pelaku bisa masuk.
 
@@ -97,6 +109,7 @@ Congrats! Flag: JARKOM2024{m4innya_h3bat_9T8kXbntQRJHCAq}
 
 
 
+<!-- TOC --><a name="how-many-packets"></a>
 ## How Many packets? 
 Sebagai kewajiban untuk laporan, aku diminta untuk mencari tahu berapa kali attempt login yang dilakukan oleh hacker. Dapatkah kamu membantuku untuk menganalisanya?
 
@@ -122,6 +135,7 @@ Congrats! Flag: JARKOM2024{c0unT_uR_P4cket5_xh8lYb9tyRVtC49}
 ```
 
 
+<!-- TOC --><a name="trace-him"></a>
 ## trace him
 Selain menghitung jumlah packet, coba lacak juga ip penyerang tersebut!
 
@@ -144,6 +158,7 @@ Congrats! Flag: JARKOM2024{Wh3re'5_thE_S4uce_u6rkRbxygRFHkAq}
 ```
 
 
+<!-- TOC --><a name="creds"></a>
 ## creds
 Attacker menyadari jika dia bisa membuat clone ftp server dari target, temukan kredensialn dari server ftp yang dibuat oleh attacker
 
@@ -177,6 +192,7 @@ Congrats! Flag: JARKOM2024{s3curE_uR_FtP_9JfkYz9jiAVtl8q}
 ```
 
 
+<!-- TOC --><a name="malwleowleo"></a>
 ## malwleowleo
 Dapatkah kamu menemukan file malware yang dikirim oleh attacker melalui ftp?
 
@@ -203,6 +219,7 @@ Congrats! Flag: JARKOM2024{beC4refUl_0f_m4lwAr3_xTfkPOnygAFtR4q}
 
 
 
+<!-- TOC --><a name="whoami"></a>
 ## whoami
 Dapatkah kamu menemukan siapa identitas attacker?
 
@@ -225,6 +242,7 @@ Correct
 ```
 
 
+<!-- TOC --><a name="fuzz"></a>
 ## fuzz
 My website got hacked. Can you analyze this network traffic to help me track the attacker?
 
@@ -281,6 +299,7 @@ Congrats! Flag: JARKOM2024{s3m4ng4t_ya_<3_xhfkX79ji1dokrB}
 
 
 
+<!-- TOC --><a name="secret"></a>
 ## secret
 Temukan pesan rahasia dari attacker
 
@@ -314,12 +333,12 @@ Congrats! Flag: JARKOM2024{l0_Blm_tW_MIO_MIRZA?_xhr8vc9fy6ke889}
 
 
 
+<!-- TOC --><a name="malwaew"></a>
 ## malwaew
 Ini adalah network traffic dari salah satu komputer di DPSSI yang terkena malware. Pak Sunhi, memintamu untuk membantu menganalisisnya. Bantulah Pak Sunhi untuk menemukan malware tersebut.
 
 note: Network traffic berikut mengandung malware asli. 
 
 file: infected.zip
-
 
 
