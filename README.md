@@ -29,6 +29,7 @@ display filter: ftp
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/32024f76-d82b-4f38-bf20-c64a24cee670)
 
 Dapat dilihat attempt attacker untuk melakukan bruteforce serta response saat attempt tersebut gagal. Oleh karena itu, follow TCP stream dengan response 230 Login Successful. Dari sini, ditemukan password pada stream terakhir (TCP stream 319).
+
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/487c997a-763c-4ebe-a330-519d5386563c)
 
 ```
@@ -54,6 +55,7 @@ Congrats! Flag: JARKOM2024{Brut3f0rce_FtP_9hr8vcAfiRktkAY}
 > file: challenge.pcapng
 
 Saat membuka capture, dapat langsung dilihat attempt attacker untuk melakukan bruteforce path.
+
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/fbb08a31-4a0a-482c-84b6-fa167186c504)
 
 Setelah follow salah satu HTTP stream dengan GET request, didapatkan informasi mengenai Host attacker dan web server korban. 
@@ -61,6 +63,7 @@ Setelah follow salah satu HTTP stream dengan GET request, didapatkan informasi m
 Host: nanomate-solutions.com
 
 Web Server: Apache/2.4.56
+
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/ef49acf8-6dca-4e2d-906e-e75c4023df74)
 
 
@@ -75,9 +78,11 @@ Untuk mencari email dan password, filter dengan mencari response 302 Found.
 display filter: _ws.col.info == "HTTP/1.1 302 Found  (text/html)"
 ```
 Packet dengan length 483 berisi dengan response ```Invalide Username or Password```. Karena packet yang didisplay hanya 140, dengan scroll ditemukan packet yang sedikit berbeda dengan length 485 dan berisi response ```Login Successful```.
+
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/e31e0167-5975-43de-943f-b98749e8917f)
 
 Setelah follow stream, ditemukan credentials yang dicari.
+
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/b3062a60-cdf0-45f2-b3dc-80b16859a769)
 ```
 ❯ nc 10.15.40.20 10002
@@ -145,6 +150,7 @@ Congrats! Flag: JARKOM2024{c0unT_uR_P4cket5_xh8lYb9tyRVtC49}
 > file: ftp.pcap
 
 Saat membuka packet, langsung terlihat ip address attacker yang attempt untuk bruteforce.
+
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/dc87bb85-0540-48ac-b7ca-0fb89e0ff6f1)
 
 ```
@@ -172,7 +178,9 @@ Dari deskripsi soal disebutkan tentang ftp server, jadi lakukan filter pada prot
 display filter: ftp
 ```
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/cf5412e0-5cb7-4135-9b67-4408307106de)
+
 Sekilas terlihat request attacker saat memasukkan credentials. Saat follow packet tersebut, dapat dilihat credentials yang digunakan untuk successful login.
+
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/26452ed8-7615-4eb6-9707-033f40dcd012)
 
 ```
@@ -229,8 +237,10 @@ Congrats! Flag: JARKOM2024{beC4refUl_0f_m4lwAr3_xTfkPOnygAFtR4q}
 > file: evidence.pcap
 
 Follow TCP stream berikutnya dari soal sebelumnya saat attacker memasukkan credentials. Pada stream ke 7, ditemukan packet dengan message yang diencode dengan base64.
+
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/bf5bca01-8962-4e12-98fb-4e4aa4dce024)
 Setelah didecode, ditemukan full name attacker.
+
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/233e1cfd-b9be-4c2a-9492-76fe6ac26e42)
 
 ```
@@ -252,15 +262,19 @@ Correct
 > file: capture.pcap
 
 Saat membuka capturenya, dapat langsung dilihat source ip address yang menggunakan ffuf pada korban serta port yang dituju.
+
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/d59fae29-1050-4c6d-959e-1d6e6c8cd2b6)
 
 Setelah follow salah satu packetnya, terlihat bahwa attacker melakukan POST pada endpoint /.
+
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/8b585c0d-c86b-4c4d-b642-8b299fce48a5)
 
 Untuk melihat response dengan tujuan mencari credentials, filter dengan source ip address korban dan destination ip address attacker.
+
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/8884352f-17d6-42ad-8391-1da9f69f27d4)
 
 Follow stream dengan response ```302 Found```. Lalu search found pada stream tersebut dan ditemukan credentialsnya.
+
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/3d1173e7-6853-4691-b270-abfcb8bfb50c)
 
 ```
@@ -315,9 +329,11 @@ display filter: ftp
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/e658a158-0022-46f6-a32a-fb81895d3e4e)
 
 Download file tersebut dengan export objects -> FTP-DATA
+
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/30a32198-dfee-499d-9312-0488eb85436d)
 
 Secret message pada soal ini adalah MIO MIRZA, dilihat dari image yang didownload.
+
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/e4ad4bfd-3836-4130-a9be-b64b23e91380)
 
 ```
@@ -345,12 +361,15 @@ Congrats! Flag: JARKOM2024{l0_Blm_tW_MIO_MIRZA?_xhr8vc9fy6ke889}
 file: infected.zip
 
 Diberikan file keylog.txt dengan TLS session keys. Ke File lalu Preferences dan masukkan file keylog.txt tadi ke TLS (Pre)-Master-Secret log filename.
+
 ![image-1](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/c8d3ecbe-8373-4ba7-9073-f5d7d4734fa1)
 
 Setelah decrypt TLS, beberapa file yang sebelumnya hidden menjadi visible. Setelah filter ke protocol http, ditemukan GET request pada file dengan extension dll. File DLL berisi executable code dan dapat terinfeksi malware, sama seperti EXE. Oleh karena itu, dicoba untuk follow stream dan ternyata memang sebuah executable file.
+
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/9832dde1-5bfd-4723-9dc4-aa9417cc4a36)
 
 Download file dengan export objects -> HTTP
+
 ![image-1](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/f49322d6-9615-4112-ae3c-0d2c1c335f81)
 
 Cek SHA-256 hash dari malware tersebut.
