@@ -344,4 +344,33 @@ Congrats! Flag: JARKOM2024{l0_Blm_tW_MIO_MIRZA?_xhr8vc9fy6ke889}
 
 file: infected.zip
 
+Diberikan file keylog.txt dengan TLS session keys. Ke File lalu Preferences dan masukkan file keylog.txt tadi ke TLS (Pre)-Master-Secret log filename.
+![image-1](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/c8d3ecbe-8373-4ba7-9073-f5d7d4734fa1)
 
+Setelah decrypt TLS, beberapa file yang sebelumnya hidden menjadi visible. Setelah filter ke protocol http, ditemukan GET request pada file dengan extension dll. File DLL berisi executable code dan dapat terinfeksi malware, sama seperti EXE. Oleh karena itu, dicoba untuk follow stream dan ternyata memang sebuah executable file.
+![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/9832dde1-5bfd-4723-9dc4-aa9417cc4a36)
+
+Download file dengan export objects -> HTTP
+![image-1](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/f49322d6-9615-4112-ae3c-0d2c1c335f81)
+
+Cek SHA-256 hash dari malware tersebut.
+```
+┌─[user@parrot]─[~/Downloads]
+└──╼ $shasum -a 256 invest_20.dll 
+31cf42b2a7c5c558f44cfc67684cc344c17d4946d3a1e0b2cecb8eb58173cb2f  invest_20.dll
+```
+
+Submit dan dapat flag
+```
+┌─[✗]─[user@parrot]─[~/Downloads]
+└──╼ $nc 10.15.40.20 10003
+Jawab pertanyaan-pertanyaan yang telah disediakan:
+
+No 1:
+Pertanyaan: Apa SHA-256 hash dari malware yang dimaksud?
+Format: sha256 hash: e.g. c8cf761b68c5f693e5cf2d23acdcca1c0295c1f739805d60df46e54e37ada3da
+Jawaban: 31cf42b2a7c5c558f44cfc67684cc344c17d4946d3a1e0b2cecb8eb58173cb2f
+Correct
+
+Congrats! Flag: JARKOM2024{wow_how_u_solve_this_xTwRYbAyQRFsR8q}
+```
