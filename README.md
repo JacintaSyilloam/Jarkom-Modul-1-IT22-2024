@@ -364,7 +364,11 @@ Diberikan file keylog.txt dengan TLS session keys. Ke File lalu Preferences dan 
 
 ![image-1](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/c8d3ecbe-8373-4ba7-9073-f5d7d4734fa1)
 
-Setelah decrypt TLS, beberapa file yang sebelumnya hidden menjadi visible. Setelah filter ke protocol http, ditemukan GET request pada file dengan extension dll. File DLL berisi executable code dan dapat terinfeksi malware, sama seperti EXE. Oleh karena itu, dicoba untuk follow stream dan ternyata memang sebuah executable file.
+Setelah decrypt TLS, beberapa file yang sebelumnya hidden menjadi visible. Setelah filter ke protocol http, ditemukan GET request pada file dengan extension dll. 
+
+![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/72840157-11d9-43b8-9243-827acf830c82)
+
+File DLL berisi executable code dan dapat terinfeksi malware, sama seperti EXE. Oleh karena itu, dicoba untuk follow stream dan memang sebuah executable file.
 
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/9832dde1-5bfd-4723-9dc4-aa9417cc4a36)
 
