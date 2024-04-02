@@ -28,7 +28,13 @@ display filter: ftp
 ```
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/32024f76-d82b-4f38-bf20-c64a24cee670)
 
-Dapat dilihat attempt attacker untuk melakukan bruteforce serta response saat attempt tersebut gagal. Oleh karena itu, follow TCP stream dengan response 230 Login Successful. Dari sini, ditemukan password pada stream terakhir (TCP stream 319).
+Dapat dilihat attempt attacker untuk melakukan bruteforce serta response saat attempt tersebut gagal. Oleh karena itu, filter protocol TCP dengan response 230 Login successful.
+```
+display filter: tcp contains "Login successful" 
+```
+![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/5d2bf847-254a-4ce5-84e5-3c871d704924)
+
+Follow stream lalu ditemukan credentials yang sedang dicari.
 
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/487c997a-763c-4ebe-a330-519d5386563c)
 
@@ -67,21 +73,22 @@ Web Server: Apache/2.4.56
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/ef49acf8-6dca-4e2d-906e-e75c4023df74)
 
 
-Selanjutnya perlu mencari endpoint untuk login biasa, oleh karena itu dicoba untuk filter protocol http. Setelah scroll terlihat beberapa endpoint dengan status 200 OK, salah satunya pada endpoint ```/app/includes/process_login.php```. Karena ada kata-kata login, dicoba submit dan benar.
+Selanjutnya perlu mencari endpoint untuk login biasa, oleh karena itu dicoba untuk filter protocol http dengan info berisi kata "login". Terlihat beberapa endpoint dengan kata login, tetapi request POST hanya dilakukan pada endpoint ```/app/includes/process_login.php```, yakni endpoint yang tadi dicari. 
 ```
-display filter: http
+display filter: http.request.uri contains "login"
 ```
-![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/f14b3d5a-2e7e-44de-a8c6-bdefcbc9ed9a)
 
-Untuk mencari email dan password, filter dengan mencari response 302 Found.
-```
-display filter: _ws.col.info == "HTTP/1.1 302 Found  (text/html)"
-```
-Packet dengan length 483 berisi dengan response ```Invalide Username or Password```. Karena packet yang didisplay hanya 140, dengan scroll ditemukan packet yang sedikit berbeda dengan length 485 dan berisi response ```Login Successful```.
+![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/2c606f6e-dd89-4a0a-90d5-5c815625c1d2)
 
-![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/e31e0167-5975-43de-943f-b98749e8917f)
 
-Setelah follow stream, ditemukan credentials yang dicari.
+Untuk mencari email dan password, filter dengan mencari response 302 Found dan berisi kata "Login Successful"
+```
+display filter: http.response.code == 302 and http contains "Login Successful"
+```
+
+![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/8dd07cc4-c788-4a5b-8b1d-5a3693c8224e)
+
+Setelah follow stream, ditemukan detail credentials yang dicari.
 
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/b3062a60-cdf0-45f2-b3dc-80b16859a769)
 ```
@@ -173,13 +180,15 @@ Congrats! Flag: JARKOM2024{Wh3re'5_thE_S4uce_u6rkRbxygRFHkAq}
 >
 > file: evidence.pcap
 
-Dari deskripsi soal disebutkan tentang ftp server, jadi lakukan filter pada protocol ftp.
+Dari deskripsi soal disebutkan tentang ftp server, jadi lakukan filter pada protocol ftp dan kata "Login successful"
 ```
-display filter: ftp
+display filter: ftp contains "Login successful"
 ```
-![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/cf5412e0-5cb7-4135-9b67-4408307106de)
 
-Sekilas terlihat request attacker saat memasukkan credentials. Saat follow packet tersebut, dapat dilihat credentials yang digunakan untuk successful login.
+![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/12cd3c75-ee9b-4e21-9439-70d7c2b51b2d)
+
+
+Saat follow packet tersebut, dapat dilihat credentials yang digunakan untuk successful login.
 
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/26452ed8-7615-4eb6-9707-033f40dcd012)
 
@@ -209,11 +218,11 @@ Congrats! Flag: JARKOM2024{s3curE_uR_FtP_9JfkYz9jiAVtl8q}
 >
 > file: evidence.pcap
 
-Untuk menemukan file pada capture, digunakan filter protocol ftp, yakni protocol untuk file transfer, dan filter search STOR, yakni command setelah sukses melakukan file transfer. Setelah itu ditemukan file malware yang dicari.
+Untuk menemukan file pada capture, digunakan filter protocol ftp, yakni protocol untuk file transfer, dan filter kata "STOR", yakni command setelah sukses melakukan file transfer. Setelah itu ditemukan file malware yang dicari.
 ```
 display filter: ftp
 ```
-![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/a13d096b-137e-481a-8288-433ef60870a2)
+![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/8f111c77-ec16-4d27-8e05-abd6b9ddfdb2)
 
 ```
 ❯ nc 10.15.40.20 10008
@@ -236,10 +245,19 @@ Congrats! Flag: JARKOM2024{beC4refUl_0f_m4lwAr3_xTfkPOnygAFtR4q}
 >
 > file: evidence.pcap
 
-Follow TCP stream berikutnya dari soal sebelumnya saat attacker memasukkan credentials. Pada stream ke 7, ditemukan packet dengan message yang diencode dengan base64.
+Explore malicious file pada pertanyaan sebelumnya dengan filter ftp-data.
+```
+Display filter: ftp-data.command contains "STOR"
+
+```
+
+![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/5d907a81-edc1-44a2-97fa-17a016b2c8ee)
+
+Follow stream ftp-data malicious file tersebut.
 
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/bf5bca01-8962-4e12-98fb-4e4aa4dce024)
-Setelah didecode, ditemukan full name attacker.
+
+Setelah message pada file c didecode, ditemukan full name attacker.
 
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/233e1cfd-b9be-4c2a-9492-76fe6ac26e42)
 
@@ -261,19 +279,33 @@ Correct
 >
 > file: capture.pcap
 
-Saat membuka capturenya, dapat langsung dilihat source ip address yang menggunakan ffuf pada korban serta port yang dituju.
+Cek packets pada protocol http. Terdapat attempt attacker untuk bruteforce credentials korban. 
 
-![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/d59fae29-1050-4c6d-959e-1d6e6c8cd2b6)
+Dari sini ditemukan source ip address (attacker), destination port (korban), dan endpoint yang digunakan untuk login yaitu /.
 
-Setelah follow salah satu packetnya, terlihat bahwa attacker melakukan POST pada endpoint /.
+```
+Display filter: http 
+```
 
-![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/8b585c0d-c86b-4c4d-b642-8b299fce48a5)
+![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/21ec7431-2177-4ee3-824f-fd59f27e4b7f)
 
-Untuk melihat response dengan tujuan mencari credentials, filter dengan source ip address korban dan destination ip address attacker.
 
-![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/8884352f-17d6-42ad-8391-1da9f69f27d4)
+Untuk mencari tool yang digunakan attacker, filter dengan source ip address attacker. 
 
-Follow stream dengan response ```302 Found```. Lalu search found pada stream tersebut dan ditemukan credentialsnya.
+Dari sini ditemukan user-agent attacker menggunakan ffuf.
+
+![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/94533330-15df-4d3a-9539-7f3a06afea5e)
+
+
+Untuk melihat response dengan tujuan mencari credentials, filter dengan source ip address korban dan destination ip address attacker dan response "Found" 
+
+```
+Display filter: http contains "Found" and ip.src eq 172.20.0.2 and ip.dst eq 10.33.1.154
+```
+
+![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/27fbec25-99d5-4215-a04a-028884c7383b)
+
+Follow stream
 
 ![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/3d1173e7-6853-4691-b270-abfcb8bfb50c)
 
@@ -322,11 +354,13 @@ Congrats! Flag: JARKOM2024{s3m4ng4t_ya_<3_xhfkX79ji1dokrB}
 > 
 > file: evidence.pcap
 
-Gunakan filter ftp untuk mencari file yang diupload oleh attacker. Ditemukan file jpg.
+Gunakan filter ftp untuk mencari file yang diupload oleh attacker. Selain malicious file pada pertanyaan sebelumnya, ditemukan juga file jpg.
 ```
-display filter: ftp
+Display filter: ftp-data.command contains "STOR"
+
 ```
-![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/e658a158-0022-46f6-a32a-fb81895d3e4e)
+
+![image](https://github.com/JacintaSyilloam/Jarkom-Modul-1-IT22-2024/assets/121095246/5d907a81-edc1-44a2-97fa-17a016b2c8ee)
 
 Download file tersebut dengan export objects -> FTP-DATA
 
